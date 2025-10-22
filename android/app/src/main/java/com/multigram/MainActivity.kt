@@ -1,4 +1,4 @@
-package com.cw_rn_template
+package com.multigram
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

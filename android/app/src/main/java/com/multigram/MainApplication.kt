@@ -1,4 +1,4 @@
-package com.cw_rn_template
+package com.multigram
 
 import android.app.Application
 import com.facebook.react.PackageList
