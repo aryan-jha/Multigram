@@ -1,9 +1,9 @@
-import Color, { COLORS } from '@ui/constants/Themes';
+import Color from '@ui/constants/FontThemes';
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.WHITE80,
+    backgroundColor: 'white',
     flex: 1,
     justifyContent: 'center',
   },
@@ -25,12 +25,12 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
   },
   button: {
-    backgroundColor: COLORS.BLUE,
+    backgroundColor: 'blue',
     borderRadius: 50,
     padding: 16,
   },
   buttonText: {
-    color: COLORS.WHITE,
+    color: 'white',
     fontWeight: '600',
     textAlign: 'center',
   },

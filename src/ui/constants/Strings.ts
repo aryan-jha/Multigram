@@ -15,7 +15,7 @@ import LocalizedStrings from 'react-native-localization';
 
 let Strings = new LocalizedStrings({
   en: Localize.en,
-  ar: Localize.ar,
+  // ar: Localize.ar,
   default: Localize.en,
 });
 

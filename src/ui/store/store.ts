@@ -3,12 +3,13 @@ import {persistStore, persistReducer} from 'redux-persist';
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { authSlice } from '@ui/slices/auth/authSlice';
+import themeSlice from '@ui/slices/auth/theme/themeSlice';
 /**
  * @description Defined the redux persist config
  */
 const persistConfig = {
   key: 'root',
-  whitelist: ['auth'],
+  whitelist: ['auth','theme'],
   storage: AsyncStorage,
 };
 
@@ -17,6 +18,7 @@ const persistConfig = {
  */
 const rootReducer = combineReducers({
   auth: authSlice.reducer,
+  theme:themeSlice,
 });
 
 /**

@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { vh, vw } from "./dimensions";
-import { COLORS } from "@ui/constants/Themes";
+import { COLORS } from "@ui/constants/FontThemes";
 import fonts from "./fonts";
 
 export const globalStyle = StyleSheet.create({
@@ -40,7 +40,7 @@ export const globalStyle = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   selectedformValue: {
-    color: COLORS.BLACK,
+    color: 'black',
     fontSize: vw(16),
     // lineHeight: vh(11),
     fontFamily: fonts.REGULAR,
@@ -63,7 +63,7 @@ export const globalStyle = StyleSheet.create({
   listEmptyCompText: {
     fontSize: vw(20),
     fontFamily: fonts.REGULAR,
-    color: COLORS.WHITE,
+    color: 'white',
     alignSelf: 'center',
   },
   centerStyle: {

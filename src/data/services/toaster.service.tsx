@@ -1,4 +1,4 @@
-import Color from '@ui/constants/Themes';
+import Color from '@ui/constants/FontThemes';
 import {vh, vw} from '@utils/dimensions';
 
 // import fonts from '@utils/fonts';

@@ -1,16 +1,44 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
+import { View, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import { ColorType } from '@ui/themes/types';
+import LottieView from 'lottie-react-native';
+import { splashJson } from '../../../../assets';
+import { vw } from '@utils/dimensions';
+import screenNames from '@utils/screenNames';
+import { useNavigation } from '@react-navigation/native';
+import { useAppTheme } from '@ui/hooks/useAppTheme';
 
 const Splash = () => {
-  return (
-    <View>
-      <Text>Splash</Text>
-      <FontAwesome name="home" size={30} color="#900" />
-      <Text>Welcome to the Splash Screen</Text>
-    </View>
-  )
-}
+   const COLOR = useAppTheme();
+  
+  const styles = getStyles(COLOR);
+  const navigation = useNavigation();
 
-export default Splash
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate(screenNames.ChatList);
+    }, 2500);
+  }, []);
+
+  return (
+    <View style={styles.container}>
+      <LottieView source={splashJson} autoPlay loop style={styles.lottie} />
+    </View>
+  );
+};
+
+export default Splash;
+
+const getStyles = (COLOR: ColorType) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: COLOR.commonBackground,
+    },
+    lottie: {
+      width: vw(400),
+      height: vw(400),
+    },
+  });

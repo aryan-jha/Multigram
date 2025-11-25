@@ -14,15 +14,22 @@
     "clean": "cd android && ./gradlew clean",
     "release": "react-native run-android --mode release",
     "pods:noflipper": "cd ios && NO_FLIPPER=1 pod install",
-    "release:build": "cd android && ./gradlew assembleRelease"
+    "release:build": "cd android && ./gradlew assembleRelease",
+    "rc": "yarn start --reset-cache",
+    "getsha": "cd android && ./gradlew signingreport",
+    "repoUpdate": "cd ios && pod install --repo-update",
+    "openAndroid": "open -a 'Android Studio.app'",
+    "androidAab": "cd android && ./gradlew bundleRelease"
   },
   "dependencies": {
+    "@legendapp/list": "^2.0.14",
     "@react-native-async-storage/async-storage": "^2.1.0",
     "@react-native-community/netinfo": "^11.4.1",
     "@react-navigation/native": "^7.0.14",
     "@react-navigation/native-stack": "^7.2.0",
     "@reduxjs/toolkit": "^2.5.1",
     "axios": "^1.7.9",
+    "lottie-react-native": "^7.3.4",
     "moment": "^2.30.1",
     "react": "19.1.0",
     "react-native": "0.80.2",

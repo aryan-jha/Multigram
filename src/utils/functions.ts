@@ -1,20 +1,8 @@
-import { DATE_FORMAT, isRTL } from "@ui/constants/Constants";
-import moment from "moment";
-import { Alert, Linking, Share } from "react-native";
-import { Image, Video } from "react-native-compressor";
-
-
-const createQueryParams = (params: any) => {
-  const newObj: any = {};
-  for (const [key, value] of Object.entries(params)) {
-    if (value) {
-      newObj[key] = value;
-    }
-  }
-  return Object.entries(newObj)
-    .map(e => e.join('='))
-    .join('&');
-};
+import {DATE_FORMAT, isRTL} from '@ui/constants/Constants';
+import moment from 'moment';
+import {Alert, Linking, Share} from 'react-native';
+import {Image, Video} from 'react-native-compressor';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const getFileType = (url: string) => {
   let newUrl = url?.toLowerCase();
@@ -27,25 +15,6 @@ const getFileType = (url: string) => {
     '.mkv',
     '.m3u8',
   ];
-};
-
-
-const openWhatsApp = async (phoneNumber: string, text: string) => {
-  const url = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(
-    text,
-  )}`;
-
-  const canOpen = await Linking.canOpenURL(url);
-
-  if (canOpen) {
-    Linking.openURL(url);
-  } else {
-    Alert.alert(
-      'WhatsApp Not Installed',
-      'Please install WhatsApp to continue.',
-      [{text: 'OK'}],
-    );
-  }
 };
 
 const showSettingsAlert = (message: string) => {
@@ -66,11 +35,6 @@ const showSettingsAlert = (message: string) => {
     {cancelable: false},
   );
 };
-const getProfileImageSource = (uri: string | null | undefined, defaultImg:any) => {
-
-  return uri ? {uri} : {defaultImg};
-};
-
 const showDate = (date: any) => {
   return moment(date)
     ?.locale(isRTL ? 'ar' : 'en')
@@ -108,7 +72,7 @@ export const getRelativeTimeFromNow = (date: string | Date): string => {
 
 export const getS3ImageUrl = async (imageUrls: any, dispatch: any) => {
   const compressedItems = await Promise.all(
-    imageUrls.map(async (item:any) => {
+    imageUrls.map(async (item: any) => {
       const mimeType = item?.mimeType || '';
 
       try {
@@ -147,8 +111,9 @@ export const getS3ImageUrl = async (imageUrls: any, dispatch: any) => {
       };
     });
 
-    {/* Uncomment the following lines if you have a Redux action to upload to S3 */}
-
+    {
+      /* Uncomment the following lines if you have a Redux action to upload to S3 */
+    }
 
     // return dispatch(s3Upload({payload}))
     //   .unwrap()
@@ -205,17 +170,35 @@ export const deleteS3Media = async (mediaUrl: any, dispatch: any) => {
       ? item?.mediaUrl?.split('.com')[1]
       : null;
 
-      {/* Uncomment the following lines if you have a Redux action to delete from S3 */}
+    {
+      /* Uncomment the following lines if you have a Redux action to delete from S3 */
+    }
 
     // dispatch(deleteS3({data:[keyToDelete]})).unwrap();
   });
 };
-export {
-  createQueryParams,
-  getFileType,
-  Share,
-  openWhatsApp,
-  getProfileImageSource,
-  showDate,
-  isValidUrl,
+export function useBottomInset(): number {
+  const insets = useSafeAreaInsets();
+  return insets.bottom;
+}
+
+export function useTopInset(): number {
+  const insets = useSafeAreaInsets();
+  return insets.top;
+}
+// export function getDisplayDate(date: string | null | undefined) {
+//   return date ? dayjs(date).format('MMM D, YYYY') : undefined;
+// }
+
+const createQueryParams = (params: any) => {
+  const newObj: any = {};
+  for (const [key, value] of Object.entries(params)) {
+    if (value === 0 || value) {
+      newObj[key] = value;
+    }
+  }
+  return Object.entries(newObj)
+    .map(e => e.join('='))
+    .join('&');
 };
+export {createQueryParams, getFileType, Share, showDate, isValidUrl};
